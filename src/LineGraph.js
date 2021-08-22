@@ -37,7 +37,7 @@ const options = {
           display: false,
         },
         ticks: {
-         
+          // Include a dollar sign in the ticks
           callback: function (value, index, values) {
             return numeral(value).format("0a");
           },
@@ -63,7 +63,7 @@ const buildChartData = (data, casesType) => {
   return chartData;
 };
 
-function LineGraph({ casesType="cases", ...props }) {
+function LineGraph({ casesType }) {
   const [data, setData] = useState({});
 
   useEffect(() => {
@@ -76,7 +76,7 @@ function LineGraph({ casesType="cases", ...props }) {
           let chartData = buildChartData(data, casesType);
           setData(chartData);
           console.log(chartData);
-       
+          // buildChart(chartData);
         });
     };
 
@@ -84,7 +84,7 @@ function LineGraph({ casesType="cases", ...props }) {
   }, [casesType]);
 
   return (
-    <div className={props.className}>
+    <div>
       {data?.length > 0 && (
         <Line
           data={{
